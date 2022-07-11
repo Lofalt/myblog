@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lofalt.myblog.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojo.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_nick_name" jdbcType="VARCHAR" property="userNickName" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_mail" jdbcType="VARCHAR" property="userMail" />
+    <result column="user_qq" jdbcType="INTEGER" property="userQq" />
+    <result column="is_admin" jdbcType="BIT" property="isAdmin" />
+    <result column="user_photo" jdbcType="VARCHAR" property="userPhoto" />
+    <result column="user_regist_time" jdbcType="TIMESTAMP" property="userRegistTime" />
+    <result column="user_integral" jdbcType="INTEGER" property="userIntegral" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojo.User" useGeneratedKeys="true" keyProperty="userId">
+
+    insert into user (user_name, user_nick_name, user_password, 
+      user_mail, user_qq, is_admin, 
+      user_photo, user_regist_time, user_integral
+      )
+    values (#{userName,jdbcType=VARCHAR}, #{userNickName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userMail,jdbcType=VARCHAR}, #{userQq,jdbcType=INTEGER}, #{isAdmin,jdbcType=BIT}, 
+      #{userPhoto,jdbcType=VARCHAR}, #{userRegistTime,jdbcType=TIMESTAMP}, #{userIntegral,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojo.User">
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_nick_name = #{userNickName,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_mail = #{userMail,jdbcType=VARCHAR},
+      user_qq = #{userQq,jdbcType=INTEGER},
+      is_admin = #{isAdmin,jdbcType=BIT},
+      user_photo = #{userPhoto,jdbcType=VARCHAR},
+      user_regist_time = #{userRegistTime,jdbcType=TIMESTAMP},
+      user_integral = #{userIntegral,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select user_id, user_name, user_nick_name, user_password, user_mail, user_qq, is_admin, 
+    user_photo, user_regist_time, user_integral
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select user_id, user_name, user_nick_name, user_password, user_mail, user_qq, is_admin, 
+    user_photo, user_regist_time, user_integral
+    from user
+  </select>
+
+  <select id="selectByUser" resultMap="BaseResultMap">
+    select * from user
+    <where>
+        <choose >
+            <when test="userId != null">
+          user_id = #{userId}
+            </when>
+            <when test="userName != null">
+              user_name = #{userName}
+            </when>
+            <when test="userNickName != null">
+              user_nick_name = #{userNickName}
+            </when>
+        </choose>
+    </where>
+  </select>
+</mapper>

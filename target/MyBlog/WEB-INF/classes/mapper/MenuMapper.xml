@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lofalt.myblog.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojo.Menu">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_route_path" jdbcType="VARCHAR" property="menuRoutePath" />
+    <collection property="childMenus" ofType="cn.lofalt.myblog.pojo.Menu"
+                select="cn.lofalt.myblog.dao.MenuMapper.selectByParentId"
+    column="menu_id"/>
+
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from menu
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojo.Menu">
+    insert into menu (menu_name, menu_route_path, parent_menuId
+      )
+    values (#{menuName,jdbcType=VARCHAR}, #{menuRoutePath,jdbcType=VARCHAR}, #{parentMenuid,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojo.Menu">
+    update menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_route_path = #{menuRoutePath,jdbcType=VARCHAR},
+      parent_menuId = #{parentMenuid,jdbcType=INTEGER}
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select menu_id, menu_name, menu_route_path
+    from menu
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select menu_id,menu_name,menu_route_path
+    from menu
+    where parent_menuId = #{id}
+
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select menu_id, menu_name, menu_route_path, parent_menuId
+    from menu
+  </select>
+
+  <select id="selectAllTopMenu" resultMap="BaseResultMap">
+    select * from menu where parent_menuId is null
+  </select>
+</mapper>

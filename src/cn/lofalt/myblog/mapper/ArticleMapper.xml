@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lofalt.myblog.daotmp.ArticleMapper">
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Article">
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="article_create_time" jdbcType="TIMESTAMP" property="articleCreateTime" />
+    <result column="article_last_mod_time" jdbcType="TIMESTAMP" property="articleLastModTime" />
+    <result column="article_read_times" jdbcType="INTEGER" property="articleReadTimes" />
+    <result column="article_love_times" jdbcType="INTEGER" property="articleLoveTimes" />
+    <result column="article_share_times" jdbcType="INTEGER" property="articleShareTimes" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="article_content" jdbcType="LONGVARCHAR" property="articleContent" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    <selectKey keyProperty="articleId" order="AFTER" resultType="java.lang.Integer">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into article (article_title, article_create_time, 
+      article_last_mod_time, article_read_times, 
+      article_love_times, article_share_times, is_active, 
+      article_content)
+    values (#{articleTitle,jdbcType=VARCHAR}, #{articleCreateTime,jdbcType=TIMESTAMP}, 
+      #{articleLastModTime,jdbcType=TIMESTAMP}, #{articleReadTimes,jdbcType=INTEGER}, 
+      #{articleLoveTimes,jdbcType=INTEGER}, #{articleShareTimes,jdbcType=INTEGER}, #{isActive,jdbcType=BIT}, 
+      #{articleContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    update article
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_create_time = #{articleCreateTime,jdbcType=TIMESTAMP},
+      article_last_mod_time = #{articleLastModTime,jdbcType=TIMESTAMP},
+      article_read_times = #{articleReadTimes,jdbcType=INTEGER},
+      article_love_times = #{articleLoveTimes,jdbcType=INTEGER},
+      article_share_times = #{articleShareTimes,jdbcType=INTEGER},
+      is_active = #{isActive,jdbcType=BIT},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select article_id, article_title, article_create_time, article_last_mod_time, article_read_times, 
+    article_love_times, article_share_times, is_active, article_content
+    from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select article_id, article_title, article_create_time, article_last_mod_time, article_read_times, 
+    article_love_times, article_share_times, is_active, article_content
+    from article
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Article">
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="article_user_id" jdbcType="INTEGER" property="articleUserId" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="article_view_count" jdbcType="INTEGER" property="articleViewCount" />
+    <result column="article_comment_count" jdbcType="INTEGER" property="articleCommentCount" />
+    <result column="article_like_count" jdbcType="INTEGER" property="articleLikeCount" />
+    <result column="article_is_comment" jdbcType="INTEGER" property="articleIsComment" />
+    <result column="article_status" jdbcType="INTEGER" property="articleStatus" />
+    <result column="article_order" jdbcType="INTEGER" property="articleOrder" />
+    <result column="article_update_time" jdbcType="TIMESTAMP" property="articleUpdateTime" />
+    <result column="article_create_time" jdbcType="TIMESTAMP" property="articleCreateTime" />
+    <result column="article_content" jdbcType="LONGVARCHAR" property="articleContent" />
+    <result column="article_summary" jdbcType="LONGVARCHAR" property="articleSummary" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    <selectKey keyProperty="articleId" order="AFTER" resultType="java.lang.Integer">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into article (article_user_id, article_title, article_view_count, 
+      article_comment_count, article_like_count, 
+      article_is_comment, article_status, article_order, 
+      article_update_time, article_create_time, 
+      article_content, article_summary)
+    values (#{articleUserId,jdbcType=INTEGER}, #{articleTitle,jdbcType=VARCHAR}, #{articleViewCount,jdbcType=INTEGER}, 
+      #{articleCommentCount,jdbcType=INTEGER}, #{articleLikeCount,jdbcType=INTEGER}, 
+      #{articleIsComment,jdbcType=INTEGER}, #{articleStatus,jdbcType=INTEGER}, #{articleOrder,jdbcType=INTEGER}, 
+      #{articleUpdateTime,jdbcType=TIMESTAMP}, #{articleCreateTime,jdbcType=TIMESTAMP}, 
+      #{articleContent,jdbcType=LONGVARCHAR}, #{articleSummary,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    update article
+    set article_user_id = #{articleUserId,jdbcType=INTEGER},
+      article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_view_count = #{articleViewCount,jdbcType=INTEGER},
+      article_comment_count = #{articleCommentCount,jdbcType=INTEGER},
+      article_like_count = #{articleLikeCount,jdbcType=INTEGER},
+      article_is_comment = #{articleIsComment,jdbcType=INTEGER},
+      article_status = #{articleStatus,jdbcType=INTEGER},
+      article_order = #{articleOrder,jdbcType=INTEGER},
+      article_update_time = #{articleUpdateTime,jdbcType=TIMESTAMP},
+      article_create_time = #{articleCreateTime,jdbcType=TIMESTAMP},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR},
+      article_summary = #{articleSummary,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select article_id, article_user_id, article_title, article_view_count, article_comment_count, 
+    article_like_count, article_is_comment, article_status, article_order, article_update_time, 
+    article_create_time, article_content, article_summary
+    from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select article_id, article_user_id, article_title, article_view_count, article_comment_count, 
+    article_like_count, article_is_comment, article_status, article_order, article_update_time, 
+    article_create_time, article_content, article_summary
+    from article
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Article">
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="article_create_time" jdbcType="TIMESTAMP" property="articleCreateTime" />
+    <result column="article_last_mod_time" jdbcType="TIMESTAMP" property="articleLastModTime" />
+    <result column="article_read_times" jdbcType="INTEGER" property="articleReadTimes" />
+    <result column="article_love_times" jdbcType="INTEGER" property="articleLoveTimes" />
+    <result column="article_share_times" jdbcType="INTEGER" property="articleShareTimes" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="article_content" jdbcType="LONGVARCHAR" property="articleContent" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    <selectKey keyProperty="articleId" order="AFTER" resultType="java.lang.Integer">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into article (article_title, article_create_time, 
+      article_last_mod_time, article_read_times, 
+      article_love_times, article_share_times, is_active, 
+      article_content)
+    values (#{articleTitle,jdbcType=VARCHAR}, #{articleCreateTime,jdbcType=TIMESTAMP}, 
+      #{articleLastModTime,jdbcType=TIMESTAMP}, #{articleReadTimes,jdbcType=INTEGER}, 
+      #{articleLoveTimes,jdbcType=INTEGER}, #{articleShareTimes,jdbcType=INTEGER}, #{isActive,jdbcType=BIT}, 
+      #{articleContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    update article
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_create_time = #{articleCreateTime,jdbcType=TIMESTAMP},
+      article_last_mod_time = #{articleLastModTime,jdbcType=TIMESTAMP},
+      article_read_times = #{articleReadTimes,jdbcType=INTEGER},
+      article_love_times = #{articleLoveTimes,jdbcType=INTEGER},
+      article_share_times = #{articleShareTimes,jdbcType=INTEGER},
+      is_active = #{isActive,jdbcType=BIT},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select article_id, article_title, article_create_time, article_last_mod_time, article_read_times, 
+    article_love_times, article_share_times, is_active, article_content
+    from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select article_id, article_title, article_create_time, article_last_mod_time, article_read_times, 
+    article_love_times, article_share_times, is_active, article_content
+    from article
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Article">
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="article_user_id" jdbcType="INTEGER" property="articleUserId" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="article_view_count" jdbcType="INTEGER" property="articleViewCount" />
+    <result column="article_comment_count" jdbcType="INTEGER" property="articleCommentCount" />
+    <result column="article_like_count" jdbcType="INTEGER" property="articleLikeCount" />
+    <result column="article_is_comment" jdbcType="INTEGER" property="articleIsComment" />
+    <result column="article_status" jdbcType="INTEGER" property="articleStatus" />
+    <result column="article_order" jdbcType="INTEGER" property="articleOrder" />
+    <result column="article_update_time" jdbcType="TIMESTAMP" property="articleUpdateTime" />
+    <result column="article_create_time" jdbcType="TIMESTAMP" property="articleCreateTime" />
+    <result column="article_content" jdbcType="LONGVARCHAR" property="articleContent" />
+    <result column="article_summary" jdbcType="LONGVARCHAR" property="articleSummary" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    <selectKey keyProperty="articleId" order="AFTER" resultType="java.lang.Integer">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into article (article_user_id, article_title, article_view_count, 
+      article_comment_count, article_like_count, 
+      article_is_comment, article_status, article_order, 
+      article_update_time, article_create_time, 
+      article_content, article_summary)
+    values (#{articleUserId,jdbcType=INTEGER}, #{articleTitle,jdbcType=VARCHAR}, #{articleViewCount,jdbcType=INTEGER}, 
+      #{articleCommentCount,jdbcType=INTEGER}, #{articleLikeCount,jdbcType=INTEGER}, 
+      #{articleIsComment,jdbcType=INTEGER}, #{articleStatus,jdbcType=INTEGER}, #{articleOrder,jdbcType=INTEGER}, 
+      #{articleUpdateTime,jdbcType=TIMESTAMP}, #{articleCreateTime,jdbcType=TIMESTAMP}, 
+      #{articleContent,jdbcType=LONGVARCHAR}, #{articleSummary,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    update article
+    set article_user_id = #{articleUserId,jdbcType=INTEGER},
+      article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_view_count = #{articleViewCount,jdbcType=INTEGER},
+      article_comment_count = #{articleCommentCount,jdbcType=INTEGER},
+      article_like_count = #{articleLikeCount,jdbcType=INTEGER},
+      article_is_comment = #{articleIsComment,jdbcType=INTEGER},
+      article_status = #{articleStatus,jdbcType=INTEGER},
+      article_order = #{articleOrder,jdbcType=INTEGER},
+      article_update_time = #{articleUpdateTime,jdbcType=TIMESTAMP},
+      article_create_time = #{articleCreateTime,jdbcType=TIMESTAMP},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR},
+      article_summary = #{articleSummary,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select article_id, article_user_id, article_title, article_view_count, article_comment_count, 
+    article_like_count, article_is_comment, article_status, article_order, article_update_time, 
+    article_create_time, article_content, article_summary
+    from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select article_id, article_user_id, article_title, article_view_count, article_comment_count, 
+    article_like_count, article_is_comment, article_status, article_order, article_update_time, 
+    article_create_time, article_content, article_summary
+    from article
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Article">
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="article_create_time" jdbcType="TIMESTAMP" property="articleCreateTime" />
+    <result column="article_last_mod_time" jdbcType="TIMESTAMP" property="articleLastModTime" />
+    <result column="article_read_times" jdbcType="INTEGER" property="articleReadTimes" />
+    <result column="article_love_times" jdbcType="INTEGER" property="articleLoveTimes" />
+    <result column="article_share_times" jdbcType="INTEGER" property="articleShareTimes" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="article_content" jdbcType="LONGVARCHAR" property="articleContent" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    insert into article (article_id, article_title, article_create_time, 
+      article_last_mod_time, article_read_times, 
+      article_love_times, article_share_times, is_active, 
+      article_content)
+    values (#{articleId,jdbcType=INTEGER}, #{articleTitle,jdbcType=VARCHAR}, #{articleCreateTime,jdbcType=TIMESTAMP}, 
+      #{articleLastModTime,jdbcType=TIMESTAMP}, #{articleReadTimes,jdbcType=INTEGER}, 
+      #{articleLoveTimes,jdbcType=INTEGER}, #{articleShareTimes,jdbcType=INTEGER}, #{isActive,jdbcType=BIT}, 
+      #{articleContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    update article
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_create_time = #{articleCreateTime,jdbcType=TIMESTAMP},
+      article_last_mod_time = #{articleLastModTime,jdbcType=TIMESTAMP},
+      article_read_times = #{articleReadTimes,jdbcType=INTEGER},
+      article_love_times = #{articleLoveTimes,jdbcType=INTEGER},
+      article_share_times = #{articleShareTimes,jdbcType=INTEGER},
+      is_active = #{isActive,jdbcType=BIT},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select article_id, article_title, article_create_time, article_last_mod_time, article_read_times, 
+    article_love_times, article_share_times, is_active, article_content
+    from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select article_id, article_title, article_create_time, article_last_mod_time, article_read_times, 
+    article_love_times, article_share_times, is_active, article_content
+    from article
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Article">
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="article_user_id" jdbcType="INTEGER" property="articleUserId" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="article_view_count" jdbcType="INTEGER" property="articleViewCount" />
+    <result column="article_comment_count" jdbcType="INTEGER" property="articleCommentCount" />
+    <result column="article_like_count" jdbcType="INTEGER" property="articleLikeCount" />
+    <result column="article_is_comment" jdbcType="INTEGER" property="articleIsComment" />
+    <result column="article_status" jdbcType="INTEGER" property="articleStatus" />
+    <result column="article_order" jdbcType="INTEGER" property="articleOrder" />
+    <result column="article_update_time" jdbcType="TIMESTAMP" property="articleUpdateTime" />
+    <result column="article_create_time" jdbcType="TIMESTAMP" property="articleCreateTime" />
+    <result column="article_content" jdbcType="LONGVARCHAR" property="articleContent" />
+    <result column="article_summary" jdbcType="LONGVARCHAR" property="articleSummary" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    insert into article (article_id, article_user_id, article_title, 
+      article_view_count, article_comment_count, 
+      article_like_count, article_is_comment, article_status, 
+      article_order, article_update_time, article_create_time, 
+      article_content, article_summary)
+    values (#{articleId,jdbcType=INTEGER}, #{articleUserId,jdbcType=INTEGER}, #{articleTitle,jdbcType=VARCHAR}, 
+      #{articleViewCount,jdbcType=INTEGER}, #{articleCommentCount,jdbcType=INTEGER}, 
+      #{articleLikeCount,jdbcType=INTEGER}, #{articleIsComment,jdbcType=INTEGER}, #{articleStatus,jdbcType=INTEGER}, 
+      #{articleOrder,jdbcType=INTEGER}, #{articleUpdateTime,jdbcType=TIMESTAMP}, #{articleCreateTime,jdbcType=TIMESTAMP}, 
+      #{articleContent,jdbcType=LONGVARCHAR}, #{articleSummary,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Article">
+    update article
+    set article_user_id = #{articleUserId,jdbcType=INTEGER},
+      article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_view_count = #{articleViewCount,jdbcType=INTEGER},
+      article_comment_count = #{articleCommentCount,jdbcType=INTEGER},
+      article_like_count = #{articleLikeCount,jdbcType=INTEGER},
+      article_is_comment = #{articleIsComment,jdbcType=INTEGER},
+      article_status = #{articleStatus,jdbcType=INTEGER},
+      article_order = #{articleOrder,jdbcType=INTEGER},
+      article_update_time = #{articleUpdateTime,jdbcType=TIMESTAMP},
+      article_create_time = #{articleCreateTime,jdbcType=TIMESTAMP},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR},
+      article_summary = #{articleSummary,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select article_id, article_user_id, article_title, article_view_count, article_comment_count, 
+    article_like_count, article_is_comment, article_status, article_order, article_update_time, 
+    article_create_time, article_content, article_summary
+    from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select article_id, article_user_id, article_title, article_view_count, article_comment_count, 
+    article_like_count, article_is_comment, article_status, article_order, article_update_time, 
+    article_create_time, article_content, article_summary
+    from article
+  </select>
+</mapper>

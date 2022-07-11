@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple">
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/myfirstblog?useSSL=false&amp;serverTimezone=UTC"
+                        userId="root"
+                        password="wsy20010219">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="cn.lofalt.myblog.pojo" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="cn.lofalt.myblog.mapper"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.lofalt.myblog.dao"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table  tableName="user" domainObjectName="User" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="user_id" sqlStatement="DB2" identity="true" />
+        </table>
+<!--        <table schema="myfirstblog" tableName="menu" domainObjectName="Menu" >-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <generatedKey column="menu_id" sqlStatement="DB2" identity="true" />-->
+<!--        </table>-->
+        <table  tableName="category" domainObjectName="Category" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="category_id" sqlStatement="DB2" identity="true" />
+        </table>
+        <table tableName="message" domainObjectName="Message" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="message_id" sqlStatement="DB2" identity="true" />
+        </table>
+        <table  tableName="comments" domainObjectName="Comment" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="comment_id" sqlStatement="DB2" identity="true" />
+        </table>
+        <table tableName="singlepage" domainObjectName="SinglePage" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="single_page_id" sqlStatement="DB2" identity="true" />
+        </table>
+        <table tableName="article" domainObjectName="Article" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="article_id" sqlStatement="DB2" identity="true" />
+        </table>
+        <table  tableName="globalsettings" domainObjectName="GlobalSetting" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="setting_id" sqlStatement="DB2" identity="true" />
+        </table>
+        <table tableName="tag" domainObjectName="Tag" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="tag_id" sqlStatement="DB2" identity="true" />
+        </table>
+
+<!--        <table tableName="myblog.user" domainObjectName="User">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="myblog.category" domainObjectName="Category">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="myblog.tag" domainObjectName="Tag">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="myblog.message" domainObjectName="Message">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="myblog.comments" domainObjectName="Comment">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="myblog.article" domainObjectName="Article">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="myblog.globalsettings" domainObjectName="GlobalSetting">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="myblog.singlepage" domainObjectName="SinglePage">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+
+    </context>
+</generatorConfiguration>

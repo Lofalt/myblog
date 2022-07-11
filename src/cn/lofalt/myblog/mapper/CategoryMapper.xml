@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lofalt.myblog.daotmp.CategoryMapper">
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Category">
+    <id column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="parent_category_id" jdbcType="INTEGER" property="parentCategoryId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    <selectKey keyProperty="categoryId" order="AFTER" resultType="java.lang.Integer">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into category (category_name, parent_category_id)
+    values (#{categoryName,jdbcType=VARCHAR}, #{parentCategoryId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    update category
+    set category_name = #{categoryName,jdbcType=VARCHAR},
+      parent_category_id = #{parentCategoryId,jdbcType=INTEGER}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select category_id, category_name, parent_category_id
+    from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select category_id, category_name, parent_category_id
+    from category
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Category">
+    <id column="category_id" jdbcType="TINYINT" property="categoryId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from category
+    where category_id = #{categoryId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    <selectKey keyProperty="categoryId" order="AFTER" resultType="java.lang.Byte">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into category (name, last_update)
+    values (#{name,jdbcType=VARCHAR}, #{lastUpdate,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    update category
+    set name = #{name,jdbcType=VARCHAR},
+      last_update = #{lastUpdate,jdbcType=TIMESTAMP}
+    where category_id = #{categoryId,jdbcType=TINYINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select category_id, name, last_update
+    from category
+    where category_id = #{categoryId,jdbcType=TINYINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select category_id, name, last_update
+    from category
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Category">
+    <id column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_pid" jdbcType="INTEGER" property="categoryPid" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="category_description" jdbcType="VARCHAR" property="categoryDescription" />
+    <result column="category_order" jdbcType="INTEGER" property="categoryOrder" />
+    <result column="category_icon" jdbcType="VARCHAR" property="categoryIcon" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    <selectKey keyProperty="categoryId" order="AFTER" resultType="java.lang.Integer">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into category (category_pid, category_name, category_description, 
+      category_order, category_icon)
+    values (#{categoryPid,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{categoryDescription,jdbcType=VARCHAR}, 
+      #{categoryOrder,jdbcType=INTEGER}, #{categoryIcon,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    update category
+    set category_pid = #{categoryPid,jdbcType=INTEGER},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      category_description = #{categoryDescription,jdbcType=VARCHAR},
+      category_order = #{categoryOrder,jdbcType=INTEGER},
+      category_icon = #{categoryIcon,jdbcType=VARCHAR}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select category_id, category_pid, category_name, category_description, category_order, 
+    category_icon
+    from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select category_id, category_pid, category_name, category_description, category_order, 
+    category_icon
+    from category
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Category">
+    <id column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="parent_category_id" jdbcType="INTEGER" property="parentCategoryId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    <selectKey keyProperty="categoryId" order="AFTER" resultType="java.lang.Integer">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into category (category_name, parent_category_id)
+    values (#{categoryName,jdbcType=VARCHAR}, #{parentCategoryId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    update category
+    set category_name = #{categoryName,jdbcType=VARCHAR},
+      parent_category_id = #{parentCategoryId,jdbcType=INTEGER}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select category_id, category_name, parent_category_id
+    from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select category_id, category_name, parent_category_id
+    from category
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Category">
+    <id column="category_id" jdbcType="TINYINT" property="categoryId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from category
+    where category_id = #{categoryId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    <selectKey keyProperty="categoryId" order="AFTER" resultType="java.lang.Byte">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into category (name, last_update)
+    values (#{name,jdbcType=VARCHAR}, #{lastUpdate,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    update category
+    set name = #{name,jdbcType=VARCHAR},
+      last_update = #{lastUpdate,jdbcType=TIMESTAMP}
+    where category_id = #{categoryId,jdbcType=TINYINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select category_id, name, last_update
+    from category
+    where category_id = #{categoryId,jdbcType=TINYINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select category_id, name, last_update
+    from category
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Category">
+    <id column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_pid" jdbcType="INTEGER" property="categoryPid" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="category_description" jdbcType="VARCHAR" property="categoryDescription" />
+    <result column="category_order" jdbcType="INTEGER" property="categoryOrder" />
+    <result column="category_icon" jdbcType="VARCHAR" property="categoryIcon" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    <selectKey keyProperty="categoryId" order="AFTER" resultType="java.lang.Integer">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into category (category_pid, category_name, category_description, 
+      category_order, category_icon)
+    values (#{categoryPid,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{categoryDescription,jdbcType=VARCHAR}, 
+      #{categoryOrder,jdbcType=INTEGER}, #{categoryIcon,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    update category
+    set category_pid = #{categoryPid,jdbcType=INTEGER},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      category_description = #{categoryDescription,jdbcType=VARCHAR},
+      category_order = #{categoryOrder,jdbcType=INTEGER},
+      category_icon = #{categoryIcon,jdbcType=VARCHAR}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select category_id, category_pid, category_name, category_description, category_order, 
+    category_icon
+    from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select category_id, category_pid, category_name, category_description, category_order, 
+    category_icon
+    from category
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Category">
+    <id column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="parent_category_id" jdbcType="INTEGER" property="parentCategoryId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    insert into category (category_id, category_name, parent_category_id
+      )
+    values (#{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{parentCategoryId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    update category
+    set category_name = #{categoryName,jdbcType=VARCHAR},
+      parent_category_id = #{parentCategoryId,jdbcType=INTEGER}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select category_id, category_name, parent_category_id
+    from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select category_id, category_name, parent_category_id
+    from category
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Category">
+    <id column="category_id" jdbcType="TINYINT" property="categoryId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from category
+    where category_id = #{categoryId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    insert into category (category_id, name, last_update
+      )
+    values (#{categoryId,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{lastUpdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    update category
+    set name = #{name,jdbcType=VARCHAR},
+      last_update = #{lastUpdate,jdbcType=TIMESTAMP}
+    where category_id = #{categoryId,jdbcType=TINYINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select category_id, name, last_update
+    from category
+    where category_id = #{categoryId,jdbcType=TINYINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select category_id, name, last_update
+    from category
+  </select>
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojotmp.Category">
+    <id column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_pid" jdbcType="INTEGER" property="categoryPid" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="category_description" jdbcType="VARCHAR" property="categoryDescription" />
+    <result column="category_order" jdbcType="INTEGER" property="categoryOrder" />
+    <result column="category_icon" jdbcType="VARCHAR" property="categoryIcon" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    insert into category (category_id, category_pid, category_name, 
+      category_description, category_order, category_icon
+      )
+    values (#{categoryId,jdbcType=INTEGER}, #{categoryPid,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, 
+      #{categoryDescription,jdbcType=VARCHAR}, #{categoryOrder,jdbcType=INTEGER}, #{categoryIcon,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojotmp.Category">
+    update category
+    set category_pid = #{categoryPid,jdbcType=INTEGER},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      category_description = #{categoryDescription,jdbcType=VARCHAR},
+      category_order = #{categoryOrder,jdbcType=INTEGER},
+      category_icon = #{categoryIcon,jdbcType=VARCHAR}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select category_id, category_pid, category_name, category_description, category_order, 
+    category_icon
+    from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select category_id, category_pid, category_name, category_description, category_order, 
+    category_icon
+    from category
+  </select>
+</mapper>

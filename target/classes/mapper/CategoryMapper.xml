@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lofalt.myblog.dao.CategoryMapper">
+  <resultMap id="BaseResultMap" type="cn.lofalt.myblog.pojo.Category">
+    <id column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="parent_category_id" jdbcType="INTEGER" property="parentCategoryId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lofalt.myblog.pojo.Category">
+    <selectKey keyProperty="categoryId" order="AFTER" resultType="java.lang.Integer">
+      VALUES IDENTITY_VAL_LOCAL()
+    </selectKey>
+    insert into category (category_name, parent_category_id)
+    values (#{categoryName,jdbcType=VARCHAR}, #{parentCategoryId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.lofalt.myblog.pojo.Category">
+    update category
+    set category_name = #{categoryName,jdbcType=VARCHAR},
+      parent_category_id = #{parentCategoryId,jdbcType=INTEGER}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select category_id, category_name, parent_category_id
+    from category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select category_id, category_name, parent_category_id
+    from category
+  </select>
+</mapper>
