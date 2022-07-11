@@ -1,0 +1,36 @@
+body{
+    background-color:white;
+    border:1px rgba(238, 238, 238, 0.5) solid;
+    box-shadow: 0 0 5px rgba(241, 238, 210, 0.5);
+    /*border-radius: 100000px;*/
+    border-top-left-radius: 10px;
+    height: 100%;
+    font-family:微软雅黑;
+}
+
+code{
+    font-family: "Roboto Thin";
+    /*border-radius: 20px;*/
+}
+*{
+    scrollbar-width: none;
+    margin:0;
+    padding:0;
+    font-family:  微软雅黑;
+}
+@media screen and (min-width: 1440px){
+    body{
+        width: 80%;
+        margin: 0 auto;
+
+    }
+}
+
+html{
+    background-color: Moccasin;
+    height: 100%;
+}
+
+[v-cloak]{
+    display: none;
+}
